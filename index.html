@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/polymarket/icon.svg"><title>Polymarket — заявки и статистика</title><link rel="stylesheet" href="/polymarket/style.css"><script defer src="/polymarket/app.js"></script></head>
+<body><main>
+<header><h1>Polymarket</h1><button id="refresh" type="button">Обновить</button></header>
+<p id="updated" class="muted">Загрузка текущих данных…</p>
+<p id="load-error" role="alert" hidden></p>
+<nav aria-label="Разделы Polymarket"><button id="show-stats" type="button" aria-pressed="true">Статистика</button><button id="show-orders" type="button" aria-pressed="false">Заявки и транзакции</button></nav>
+<section id="stats"><h2>Бумажные стратегии</h2><p class="muted">Банки — независимые варианты. Их прибыль не складывается. Наблюдение стакана не доказывает исполнение на бирже.</p>
+<label for="bank">Стратегия и банк</label><select id="bank"></select>
+<div class="metrics" id="metrics"></div><p id="paper-health"></p>
+<h3 id="fills-title">Последние бумажные операции</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-labelledby="fills-title"><table><thead><tr><th scope="col">Рынок</th><th scope="col">Банк</th><th scope="col">Количество</th><th scope="col">Стоимость, $</th><th scope="col">Комиссия, $</th><th scope="col">Выплата, $</th><th scope="col">Источник</th></tr></thead><tbody id="fills"></tbody></table></div></section>
+<section id="orders" hidden><h2>Заявки и транзакции</h2>
+<p id="access" role="status"></p><p class="muted">Черновик хранится только здесь. Он не занимает очередь Polymarket и не является отправленным ордером.</p>
+<form id="order-form">
+<div class="fields"><label>Condition ID<input id="condition" name="condition" required pattern="0x[0-9a-fA-F]{64}" autocomplete="off" spellcheck="false"></label><label>Outcome token ID<input id="token" name="token_id" required pattern="[0-9]{1,78}" inputmode="numeric" autocomplete="off" spellcheck="false"></label></div>
+<button id="check-market" type="button">Проверить рынок</button><p id="market-info" role="status">Рынок ещё не проверен.</p>
+<div class="fields"><label>Сторона<select name="side"><option value="BUY">Купить</option><option value="SELL">Продать</option></select></label><label>Тип<select name="order_type" id="order-type"><option>GTC</option><option>GTD</option><option>FOK</option><option>FAK</option></select></label><label>Цена, $ за долю<input name="price" required inputmode="decimal" pattern="0\.[0-9]+" placeholder="0.48"></label><label>Количество долей<input name="size" required inputmode="decimal" pattern="[0-9]+(\.[0-9]{1,2})?" placeholder="10"></label></div>
+<label class="check"><input name="post_only" type="checkbox" checked>Post-only — только пассивное размещение</label>
+<label id="expiry-field" hidden>Срок действия GTD<input type="datetime-local" id="expiry"></label>
+<div class="actions"><button type="submit">Сохранить черновик</button><button type="button" disabled title="Нет допущенного маршрута и подключённого торгового аккаунта">Отправить на биржу</button></div>
+<p id="form-result" role="status" aria-live="polite"></p></form>
+<h3 id="orders-title">Журнал заявок</h3><div class="table-wrap" tabindex="0" role="region" aria-labelledby="orders-title"><table><thead><tr><th scope="col">Создана</th><th scope="col">Сторона</th><th scope="col">Цена</th><th scope="col">Количество</th><th scope="col">Состояние</th><th scope="col">Исполнено</th><th scope="col">Действие</th></tr></thead><tbody id="order-rows"></tbody></table></div>
+<h3>Транзакции блокчейна</h3><p id="transactions">Торговый аккаунт не подключён. Подтверждённых транзакций из этого модуля нет.</p></section>
+<details><summary>Подключение и задержка</summary><p id="network"></p><p class="muted">Показан одиночный холодный публичный GET, не скорость отправки или исполнения ордера. Встраивание в Creator Hub ещё не активировано.</p></details>
+</main></body></html>

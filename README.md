@@ -1,5 +1,5 @@
 # Polymarket Terminal
-A prepared trading-terminal prototype: durable SQLite order journal, exact-decimal order validation, explicit unknown outcomes and a native JavaScript interface.
+Inspect public Polymarket order books and keep a local record of order requests, including outcomes that are still unknown. This prototype validates prices and sizes with exact decimals and stores the journal in SQLite. Live trading is disabled.
 
 ## Included
 - GTC/GTD/FOK/FAK and post-only validation
